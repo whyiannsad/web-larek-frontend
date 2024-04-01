@@ -216,16 +216,13 @@ interface ISuccess {
 # Типы данных
 
 ```typescript
-// Методы запросов к серверу
-export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
-
-// Ответ от сервера
+// Ответ сервера
 export type ApiListResponse<Type> = {
     total: number,
     items: Type[]
 };
 
-// Реализация Event
+// Event
 export type EventName = string | RegExp;
 export type Subscriber = Function;
 export type EmitterEvent = {
@@ -233,18 +230,17 @@ export type EmitterEvent = {
     data: unknown
 };
 
-
-// Данные о товаре
+// Товар
 export interface IProductItem {
     id: string;
     title: string;
     description?: string;
-    image: string;
+    image?: string;
     category: string;
     price: number | null;
 }
 
-// Состояние приложения
+// Приложение
 export interface IAppState {
     catalog: IProductItem[];
     basket: IProductItem[];
@@ -254,57 +250,46 @@ export interface IAppState {
     order: IOrderForm | null;
 }
 
-// Форма контактов
+// Контакты
 export interface IContactsForm {
     email: string;
     phone: string;
 }
 
-// Форма доставки
+// Доставка
 export interface IDeliveryForm {
     address: string;
     payment: string;
 }
 
-// Форма данных заказа
+// Данные заказа
 export interface IOrderForm extends IContactsForm, IDeliveryForm {
     total: number;
     items: string[];
 }
 
-
-// Ответ сервера на заказ
+// Ответ на заказ
 export interface IOrderResult {
     id: string;
     total: number;
 }
 
-
 // Компоненты представления
-
-// Отображение страницы
 export interface IPage {
     counter: number;
     catalog: HTMLElement[];
     locked: boolean;
 }
 
-// Отображение карточки
+// Карточка
 export interface ICard extends IProductItem {
     count?: string;
     buttonText?: string;
 }
 
-
-// Отображение успешного оформления заказа
+// Отображение заказа
 export interface ISuccess {
     total: number | null;
-}
-
-// Отображение корзины
-export interface IBasketView {
-    items: HTMLElement[];
-    total: number;
 }
 
 // Валидность формы
@@ -313,28 +298,30 @@ export interface IFormState {
     errors: string[];
 }
 
+// Отображение корзины
+export interface IBasketView {
+    items: HTMLElement[];
+    total: number;
+}
+
 // Ошибки форм
 export type FormErrors = Partial<Record<keyof IOrderForm, string>>;
 
-//модальное окно
+// Модальное окно
 export interface IModalData {
     content: HTMLElement;
 }
 
-
-
 // Методы для API приложения
 export interface ILarekAPI {
     getCardList: () => Promise<ICard[]>;
-    getCard: (id: string) => Promise<ICard>;
     orderItems: (order: IOrderForm) => Promise<IOrderResult>;
 }
-
 
 export interface IActions {
     onClick: (event: MouseEvent) => void;
 }
-  
+
 export interface ISuccessActions {
     onClick: () => void;
 }
