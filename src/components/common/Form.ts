@@ -1,11 +1,7 @@
 import {Component} from "../base/Component";
 import {IEvents} from "../base/events";
 import {ensureElement} from "../../utils/utils";
-
-interface IFormState {
-    valid: boolean;
-    errors: string[];
-}
+import {IFormState} from "../../types";
 
 export class Form<T> extends Component<IFormState> {
     protected _submit: HTMLButtonElement;
@@ -27,6 +23,7 @@ export class Form<T> extends Component<IFormState> {
         this.container.addEventListener('submit', (e: Event) => {
             e.preventDefault();
             this.events.emit(`${this.container.name}:submit`);
+            this._submit.disabled = false;
         });
     }
 

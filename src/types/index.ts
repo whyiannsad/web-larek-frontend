@@ -19,7 +19,7 @@ export interface IProductItem {
     id: string;
     title: string;
     description?: string;
-    image: string;
+    image?: string;
     category: string;
     price: number | null;
 }
@@ -99,7 +99,6 @@ export interface IModalData {
 // Методы для API приложения
 export interface ILarekAPI {
     getCardList: () => Promise<ICard[]>;
-    getCard: (id: string) => Promise<ICard>;
     orderItems: (order: IOrderForm) => Promise<IOrderResult>;
 }
 
