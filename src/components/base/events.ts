@@ -1,6 +1,11 @@
 // Хорошая практика даже простые типы выносить в алиасы
 // Зато когда захотите поменять это достаточно сделать в одном месте
-import {EventName, Subscriber, EmitterEvent} from "../../types";
+type EventName = string | RegExp;
+type Subscriber = Function;
+type EmitterEvent = {
+    eventName: string,
+    data: unknown
+};
 
 export interface IEvents {
     on<T extends object>(event: EventName, callback: (data: T) => void): void;
