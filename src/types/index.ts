@@ -16,6 +16,12 @@ export interface IAppState {
     order: IOrderForm | null;
 }
 
+export interface IBasketView {
+    items: HTMLElement[];
+    total: number;
+    selected: string[];
+}
+
 export interface IContactsForm {
     email: string;
     phone: string;
@@ -24,6 +30,10 @@ export interface IContactsForm {
 export interface IDeliveryForm {
     address: string;
     payment: string;
+}
+
+interface IModalData {
+    content: HTMLElement;
 }
 
 export interface IOrderForm extends IContactsForm, IDeliveryForm {

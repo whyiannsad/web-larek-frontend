@@ -1,7 +1,7 @@
 import { Api, ApiListResponse } from './base/api';
 import {IOrder, IOrderResult, ILot, LotUpdate, IBid} from "../types";
 
-export interface IAuctionAPI {
+export interface ILarekAPI {
     getLotList: () => Promise<ILot[]>;
     getLotItem: (id: string) => Promise<ILot>;
     getLotUpdate: (id: string) => Promise<LotUpdate>;
