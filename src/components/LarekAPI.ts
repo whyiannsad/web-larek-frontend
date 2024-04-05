@@ -2,11 +2,9 @@ import { Api, ApiListResponse } from './base/api';
 import {IOrder, IOrderResult, ILot, LotUpdate, IBid} from "../types";
 
 export interface ILarekAPI {
-    getLotList: () => Promise<ILot[]>;
-    getLotItem: (id: string) => Promise<ILot>;
-    getLotUpdate: (id: string) => Promise<LotUpdate>;
-    placeBid(id: string, bid: IBid): Promise<LotUpdate>;
-    orderLots: (order: IOrder) => Promise<IOrderResult>;
+    getCardsList: () => Promise<ILot[]>;
+    getProductItem: (id: string) => Promise<ILot>;
+    orderProducts: (order: IOrder) => Promise<IOrderResult>;
 }
 
 export class AuctionAPI extends Api implements IAuctionAPI {
