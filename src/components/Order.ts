@@ -1,9 +1,9 @@
 import {Form} from "./common/Form";
-import {IOrderForm} from "../types";
+import {IOrder} from "../types";
 import {EventEmitter, IEvents} from "./base/events";
 import {ensureElement} from "../utils/utils";
 
-export class Order extends Form<IOrderForm> {
+export class Order extends Form<IOrder> {
     constructor(container: HTMLFormElement, events: IEvents) {
         super(container, events);
     }

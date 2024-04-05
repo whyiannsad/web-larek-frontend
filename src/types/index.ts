@@ -7,13 +7,19 @@ export interface IProductItem {
     price: number | null;
 }
 
+export interface ILarekAPI {
+    getCardsList: () => Promise<IProduct[]>;
+    getProductItem: (id: string) => Promise<IProduct>;
+    orderLots: (order: IOrder) => Promise<IOrderResult>;
+}
+
 export interface IAppState {
     catalog: IProductItem[];
     basket: IProductItem[];
     preview: string | null;
     contact: IContactsForm | null;
     delivery: IDeliveryForm | null;
-    order: IOrderForm | null;
+    order: IOrder | null;
 }
 
 export interface IBasketView {
@@ -32,16 +38,11 @@ export interface IDeliveryForm {
     payment: string;
 }
 
-interface IModalData {
+export interface IModalData {
     content: HTMLElement;
 }
 
-export interface IOrderForm extends IContactsForm, IDeliveryForm {
-    total: number;
-    items: string[];
-}
-
-export interface IOrder extends IOrderForm {
+export interface IOrder extends IContactsForm, IDeliveryForm {
 	total: number;
 	items: string[];
 }
@@ -72,7 +73,7 @@ export interface IFormState {
     errors: string[];
 }
 
-export type FormErrors = Partial<Record<keyof IOrderForm, string>>;
+export type FormErrors = Partial<Record<keyof IOrder, string>>;
 
 export interface IActions {
     onClick: (event: MouseEvent) => void;
