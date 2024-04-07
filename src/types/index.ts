@@ -8,8 +8,8 @@ export interface IProductItem {
 }
 
 export interface ILarekAPI {
-    getCardsList: () => Promise<IProduct[]>;
-    getProductItem: (id: string) => Promise<IProduct>;
+    getCardsList: () => Promise<IProductItem[]>;
+    getProductItem: (id: string) => Promise<IProductCard>;
     orderLots: (order: IOrder) => Promise<IOrderResult>;
 }
 
@@ -58,10 +58,9 @@ export interface IPage {
     locked: boolean;
 }
 
-export interface IProduct extends IProductItem {
-    counter?: string;
+export interface IProductCard extends IProductItem {
+    count?: number;
     buttonText?: string;
-    index?: string;
 }
 
 export interface ISuccess {
