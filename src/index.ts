@@ -76,7 +76,7 @@ events.on('contacts:submit', () => {
             modal.render({
                 content: success.render({})
             });
-            success.total = result.total.toString();
+            success.total = result.total;
             appData.clearBasket()
         })
         .catch(err => {
