@@ -63,15 +63,15 @@ export class Card extends Component<IProductCard> {
     }
 
     set category(value: string) {
-		this.setText(this._category, value)
+	    this.setText(this._category, value);
 	}
 
     set index(value: string) {
-		this._index.textContent = value;
+	    this._index.textContent = value;
 	}
 
     set price(value: string) {
-		if (value) {
+	    if (value) {
             this.setText(this._price, `${value} синапсов`)
         } else {
             this.setText(this._price, `Бесценно`)
@@ -79,11 +79,11 @@ export class Card extends Component<IProductCard> {
         }
 	}
 
-	get price(): string {
-		return this._price.textContent || '';
+    get price(): string {
+	    return this._price.textContent || '';
 	}
 
     set button(value: string) {
-		this.setText(this._button, value);
+	    this.setText(this._button, value);
 	}
 }

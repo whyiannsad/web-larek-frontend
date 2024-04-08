@@ -9,7 +9,6 @@ export interface IProductItem {
 
 export interface ILarekAPI {
     getCardsList: () => Promise<IProductItem[]>;
-    getProductItem: (id: string) => Promise<IProductCard>;
     orderLots: (order: IOrder) => Promise<IOrderResult>;
 }
 

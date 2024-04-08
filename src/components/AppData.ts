@@ -29,7 +29,7 @@ export class AppState extends Model<IAppState> {
     formErrors: FormErrors = {};
 
     updateBasket() {
-		this.emitChanges('counter:changed', this.basket);
+	    this.emitChanges('counter:changed', this.basket);
         this.emitChanges('basket:changed', this.basket);
 	}
 
@@ -44,21 +44,21 @@ export class AppState extends Model<IAppState> {
     }
 
     clearBasket() {
-		this.basket = [];
+	    this.basket = [];
         this.updateBasket();
 	}
 
     addToBasket(item: IProductCard) {
-		this.basket.push(item);
-		this.updateBasket();
+	    this.basket.push(item);
+	    this.updateBasket();
     }
 
     removeFromBasket(item: IProductCard) {
-		this.basket = this.basket.filter((product) => product.id != item.id);
-		this.updateBasket();
+	    this.basket = this.basket.filter((product) => product.id != item.id);
+	    this.updateBasket();
 	}
 
-    spotProductBasket (item: IProductCard) {
+    spotProductInBasket (item: IProductCard) {
         return this.basket.includes(item);
     }
 
@@ -101,7 +101,7 @@ export class AppState extends Model<IAppState> {
         return Object.keys(errors).length === 0;
     }
 
-    getTotal(): number {
+    getTotalResult(): number {
         return this.basket.reduce((result, item) => result + item.price, 0);
     }
 }

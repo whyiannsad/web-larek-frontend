@@ -10,14 +10,14 @@ interface IBasketView {
 
 export class Basket extends Component<IBasketView> {
     protected _list: HTMLElement;
-    protected _total: HTMLElement;
+    protected _price: HTMLElement;
     protected _button: HTMLButtonElement;
 
     constructor(container: HTMLElement, protected events: EventEmitter) {
         super(container);
 
         this._list = this.container.querySelector('.basket__list');
-        this._total = this.container.querySelector('.basket__price');
+        this._price = this.container.querySelector('.basket__price');
         this._button = this.container.querySelector('.basket__button');
 
         if (this._button) {
@@ -48,6 +48,6 @@ export class Basket extends Component<IBasketView> {
     }
 
     set total(total: number) {
-        this.setText(this._total, `${total} синапсов`);
+        this.setText(this._price, `${total} синапсов`);
     }
 }

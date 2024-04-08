@@ -166,8 +166,8 @@ events.on('basket:changed', () => {
             count: index + 1,
         });
     });
-    basket.total = appData.getTotal();
-	appData.order.total = appData.getTotal();
+    basket.total = appData.getTotalResult();
+	appData.order.total = appData.getTotalResult();
 })
 
 // Открыть товар
@@ -184,8 +184,8 @@ events.on('counter:changed', () => {
 events.on('preview:changed', (item: IProductCard) => {
     const card = new Card(cloneTemplate(cardPreviewTemplate), {
         onClick: () => {
-			card.button = appData.spotProductBasket(item)? 'Добавить' : 'Удалить';
-            if (!appData.spotProductBasket(item)) {
+		    card.button = appData.spotProductInBasket(item)? 'Добавить' : 'Удалить';
+            if (!appData.spotProductInBasket(item)) {
                 appData.addToBasket(item);
             } else {
                 appData.removeFromBasket(item);
