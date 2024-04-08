@@ -77,17 +77,11 @@ events.on('contacts:submit', () => {
                 content: success.render({})
             });
             success.total = result.total.toString();
+            appData.clearBasket()
         })
         .catch(err => {
             console.error(err);
         });
-});
-
-// Изменилось состояние валидации формы
-events.on('contacts:change', (errors: Partial<IContactsForm>) => {
-    const { email, phone } = errors;
-    order.valid = !email && !phone;
-    order.errors = Object.values({phone, email}).filter(i => !!i).join('; ');
 });
 
 // Изменилось одно из полей
@@ -101,13 +95,6 @@ events.on('formErrors:change', (errors: Partial<IContactsForm>) => {
 	order.valid = !email && !phone;
 	order.errors = Object.values({phone, email}).filter((i) => !!i).join('; ');
 })
-
-//Валидация формы ввода адреса
-events.on('delivery:changed', (errors: Partial<IDeliveryForm>) => {
-    const { payment, address } = errors;
-    deliver.valid = !payment && !address;
-    deliver.errors = Object.values({payment, address}).filter(i => !!i).join('; ');
-});
 
 // Изменения доставки
 events.on(/^order\..*:change/, (data: { field: keyof IDeliveryForm, value: string }) => {
@@ -203,22 +190,12 @@ events.on('preview:changed', (item: IProductCard) => {
     });
 });
 
-// Способ оплаты
-events.on('payment:changed', (target: HTMLElement) => {
+// Смена способов оплаты
+events.on('payment:changed', (target: HTMLButtonElement) => {
 	if (!target.classList.contains('button_alt-active')) {
-		deliver.paymentButtons();
+		deliver.paymentButtons(target);
 		appData.order.payment = PaymentVariant[target.getAttribute('name')];
 	}
-});
-
-// Валидация доставки
-events.on('delivery:ready' , () => {
-    deliver.valid = true;
-});
-
-//Валидация формы контактов
-events.on('contacts:ready' , () => {
-    order.valid = true;
 });
 
 // Добавить

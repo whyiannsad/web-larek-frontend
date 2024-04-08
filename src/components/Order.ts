@@ -25,12 +25,8 @@ export class Delivery extends Form<IDeliveryForm> {
 		container: HTMLFormElement, events: IEvents, actions?: IActions) {
 		super(container, events);
 
-		this._buttonOnline = ensureElement<HTMLButtonElement>(
-            'button[name="card"]', 
-            container);
-		this._buttonOffline = ensureElement<HTMLButtonElement>(
-            'button[name="cash"]',
-            container);
+		this._buttonOnline = ensureElement<HTMLButtonElement>('button[name="card"]', container);
+		this._buttonOffline = ensureElement<HTMLButtonElement>('button[name="cash"]', container);
 		this._buttonOnline.classList.add('button_alt-active');
 
 		if (actions?.onClick) {
@@ -39,9 +35,10 @@ export class Delivery extends Form<IDeliveryForm> {
 		}
 	}
 
-	paymentButtons() {
-		this._buttonOnline.classList.toggle('button_alt-active');
-		this._buttonOffline.classList.toggle('button_alt-active');
+	paymentButtons(toggleButton: HTMLButtonElement) {
+		this._buttonOnline.classList.remove('button_alt-active');
+		this._buttonOffline.classList.remove('button_alt-active');
+		toggleButton.classList.add('button_alt-active');
 	}
 
 	set address(value: string) {
