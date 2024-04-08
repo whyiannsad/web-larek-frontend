@@ -5,15 +5,6 @@ export type CatalogChangeEvent = {
     catalog: IProductCard[]
 };
 
-export class IProduct extends Model<IProductItem> {
-    category: string;
-	description: string;
-	id: string;
-	image: string;
-	price: number;
-	title: string;
-}
-
 export class AppState extends Model<IAppState> {
     basket: IProductCard[] = [];
     catalog: IProductCard[];
@@ -39,7 +30,7 @@ export class AppState extends Model<IAppState> {
     }
 
     setCatalog(items: IProductCard[]) {
-        this.catalog = items.map((item) => new IProduct(item, this.events));
+        this.catalog = items;
         this.emitChanges('items:changed', { catalog: this.catalog });
     }
 

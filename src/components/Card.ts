@@ -83,7 +83,7 @@ export class Card extends Component<IProductCard> {
 	    return this._price.textContent || '';
 	}
 
-    set button(value: string) {
+    set buttonText(value: string) {
 	    this.setText(this._button, value);
 	}
 }

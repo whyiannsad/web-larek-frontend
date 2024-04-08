@@ -171,7 +171,7 @@ events.on('counter:changed', () => {
 events.on('preview:changed', (item: IProductCard) => {
     const card = new Card(cloneTemplate(cardPreviewTemplate), {
         onClick: () => {
-		    card.button = appData.spotProductInBasket(item)? 'Добавить' : 'Удалить';
+		    card.buttonText = appData.spotProductInBasket(item)? 'Добавить' : 'Удалить из корзины';
             if (!appData.spotProductInBasket(item)) {
                 appData.addToBasket(item);
             } else {
@@ -186,6 +186,7 @@ events.on('preview:changed', (item: IProductCard) => {
             image: item.image,
             description: item.description,
             price: item.price,
+            buttonText: appData.spotProductInBasket(item)? 'Удалить из корзины' : 'Добавить',
         }),
     });
 });
